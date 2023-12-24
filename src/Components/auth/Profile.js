@@ -83,7 +83,7 @@ export default function Profile() {
     <div className={`container mx-auto  `}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
 
-      <div className="flex justify-center items-center ">
+      <div className={`flex justify-center items-center `}>
         <div
           className={`${styles.glass} ${extend.glass}`}
           style={{ width: "80%", height: "fit-content" }}
@@ -95,7 +95,7 @@ export default function Profile() {
             </span>
           </div>
 
-          <form className="py-1" onSubmit={formik.handleSubmit}>
+          <form className={`py-1 profile_form`} onSubmit={formik.handleSubmit}>
             <div className="profile flex justify-center py-4">
               <label htmlFor="profile">
                 {" "}
@@ -110,7 +110,7 @@ export default function Profile() {
                 type="file"
                 name="profile"
                 id="profile"
-                className=""
+                style={{ display: "none" }}
               />
             </div>
 

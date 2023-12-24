@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 import { getUsername } from "../Components/helper/helper";
+//axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.baseURL = "https://opengym-api.onrender.com";
 
 /** custom hook */

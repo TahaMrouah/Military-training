@@ -50,7 +50,7 @@ export default function Register() {
     <div className="container mx-auto">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
 
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center ">
         <div
           className={styles.glass}
           style={{ width: "70%", paddingTop: "3rem", height: "fit-content" }}
@@ -83,18 +83,21 @@ export default function Register() {
 
             <div className="textbox flex flex-col items-center gap-6">
               <input
+                style={{ width: "90%" }}
                 {...formik.getFieldProps("username")}
                 className={styles.textbox}
                 type="text"
                 placeholder="Username"
               />
               <input
+                style={{ width: "90%" }}
                 {...formik.getFieldProps("email")}
                 className={styles.textbox}
                 type="email"
                 placeholder="Email"
               />
               <input
+                style={{ width: "90%" }}
                 {...formik.getFieldProps("password")}
                 className={styles.textbox}
                 type={showPassword ? "text" : "password"}

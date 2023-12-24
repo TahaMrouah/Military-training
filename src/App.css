@@ -61,3 +61,24 @@ body {
     filter: blur(150px);
     z-index: -9;
 }
+
+@media screen and (max-width: 800px) {
+    .profile_form .name {
+        display: grid;
+        justify-content: center;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .profile_form .name>input {
+        width: 100%
+    }
+
+    .recovery .textbox .input>input {
+        width: 50%;
+    }
+
+    .recovery .textbox>button {
+        width: 50%
+    }
+}
