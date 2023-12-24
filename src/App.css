@@ -62,6 +62,24 @@ body {
     z-index: -9;
 }
 
+.name-center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.images .b1,
+.images .b2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.imgs img {
+    width: 250px;
+    height: 270px;
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 800px) {
     .profile_form .name {
         display: grid;
@@ -80,5 +98,19 @@ body {
 
     .recovery .textbox>button {
         width: 50%
+    }
+
+    .images .b1,
+    .images .b2 {
+        flex-direction: column;
+        /* Stack items on top of each other */
+        align-items: center;
+        /* Center items horizontally */
+    }
+
+    .images .b1 h4,
+    .images .b2 h4 {
+        margin-top: 10px;
+        /* Add space between image and text on mobile */
     }
 }

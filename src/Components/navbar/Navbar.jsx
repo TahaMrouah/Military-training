@@ -4,15 +4,16 @@ import { useState } from "react";
 import "./navbar.css";
 import { Link } from "react-scroll";
 import { Link as Lien } from "react-router-dom";
+import logo from "../../Assets/logo.png";
 
 const Navbar = () => {
   const mobile = window.innerWidth <= 800 ? true : false;
   const [menuOpened, setMenuOpened] = useState(true);
-
+  const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <nav className="navbar">
       <Lien to="/" style={{ textDecoration: "none" }}>
-        <h1 className="logo"> LOGO </h1>{" "}
+        <img src={logo} alt="Logo" style={{ width: "50%", margin: "0 auto" }} />
       </Lien>
 
       {menuOpened === false && mobile === true ? (
@@ -50,14 +51,25 @@ const Navbar = () => {
               marginLeft: "20px",
             }}
           >
-            <Lien
-              style={{ fontWeight: "bold" }}
-              to="./username"
-              className="nav-links"
-              onClick={() => setMenuOpened(false)}
-            >
-              <i className="fa-solid fa-user"></i> Log In
-            </Lien>
+            {isLoggedIn ? (
+              <Lien
+                style={{ fontWeight: "bold" }}
+                to="./profile"
+                className="nav-links"
+                onClick={() => setMenuOpened(false)}
+              >
+                <i className="fa-solid fa-user"></i> Profile
+              </Lien>
+            ) : (
+              <Lien
+                style={{ fontWeight: "bold" }}
+                to="./username"
+                className="nav-links"
+                onClick={() => setMenuOpened(false)}
+              >
+                <i className="fa-solid fa-user"></i> Log In
+              </Lien>
+            )}
           </li>
         </ul>
       )}

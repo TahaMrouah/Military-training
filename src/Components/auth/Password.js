@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import avatar from "../../Assets/profile.png";
 import toast, { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
+import RingLoader from "react-spinners/RingLoader";
 import { passwordValidate } from "../helper/validate";
 import useFetch from "../../hooks/fetch.hook";
 import { useAuthStore } from "../../store/store";
@@ -49,7 +50,33 @@ export default function Password() {
     },
   });
 
-  if (isLoading) return <h1 className="text-2xl font-bold">isLoading</h1>;
+  if (isLoading)
+    return (
+      <div
+        className="flex justify-center items-center"
+        style={{ display: "grid", margin: "70px auto" }}
+      >
+        <h1
+          className="flex justify-center items-center"
+          style={{
+            fontSize: "3rem",
+            fontWeight: "bold",
+            color: "orange",
+            display: "block",
+            marginBottom: "20px",
+          }}
+        >
+          Loading Data Please Wait!!{" "}
+        </h1>
+        <RingLoader
+          color={"orange"}
+          loading={isLoading}
+          size={250}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   if (serverError)
     return <h1 className="text-xl text-red-500">{serverError.message}</h1>;
 

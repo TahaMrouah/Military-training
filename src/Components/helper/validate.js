@@ -18,6 +18,10 @@ const usernameVerify = (err = {}, values) => {
     err.username = toast.error("Username Required");
   } else if (values.username.includes(" ")) {
     err.username = toast.error("Username must not have spaces");
+  } else if (values.username.length < 5) {
+    err.username = toast.error("Username must have at least 5 character ");
+  } else if (values.username.length > 16) {
+    err.username = toast.error("Username must have 16 character at max");
   }
   return err;
 };

@@ -3,6 +3,8 @@ import "./Footer.css";
 import git from "../../../Assets/git.png";
 import insta from "../../../Assets/insta.png";
 import lin from "../../../Assets/in.png";
+import { Link as Lien } from "react-router-dom";
+import logo from "../../../Assets/logo.png";
 
 export const Footer = () => {
   return (
@@ -16,7 +18,13 @@ export const Footer = () => {
         </div>
 
         <div className="logo-f">
-          <h1>Logo</h1>
+          <Lien to="/" style={{ textDecoration: "none" }}>
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: "50%", margin: "0 auto" }}
+            />
+          </Lien>
         </div>
       </div>
       <div className="blur blur-f1"></div>

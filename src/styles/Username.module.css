@@ -7,6 +7,16 @@
     @apply border-4 border-gray-50 shrink-0 h-3/4 w-[30%] rounded-3xl py-20 px-7 min-w-max;
 }
 
+.backArrow {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    /* You can adjust the color as needed */
+}
+
 .bg {
     background-image: url("../Assets/Background.png");
     background-size: cover;
