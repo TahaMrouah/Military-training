@@ -14,6 +14,7 @@ import convertToBase64 from "../helper/convert";
 import { updateUser } from "../helper/helper";
 import styles from "../../styles/Username.module.css";
 import extend from "../../styles/Profile.module.css";
+import AdminDashboard from "./AdminDashboard";
 
 export default function Profile() {
   // const navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function Profile() {
       beforebabody: apiData?.beforebabody || "",
       afterfrbody: apiData?.afterfrbody || "",
       afterbabody: apiData?.afterbabody || "",
+      role: apiData?.role || "",
     },
     enableReinitialize: true,
     validate: profileValidation,
@@ -163,6 +165,10 @@ export default function Profile() {
     );
   if (serverError)
     return <h1 className="text-xl text-red-500">{serverError.message}</h1>;
+  if (apiData?.role === "Admin") {
+    // Render AdminDashboard component for admin users
+    return <AdminDashboard />;
+  }
   return (
     <div className={`container mx-auto  `}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
@@ -318,7 +324,7 @@ export default function Profile() {
                   style={{ display: "flex", justifyContent: "space-arround" }}
                   className="b1"
                 >
-                  <div className="imgs flex justify-center py-4">
+                  <div className="profile flex justify-center py-4">
                     <label htmlFor="bfb">
                       {" "}
                       <img
@@ -336,7 +342,7 @@ export default function Profile() {
                     />
                   </div>
 
-                  <div className="imgs flex justify-center py-4">
+                  <div className="profile flex justify-center py-4">
                     <label htmlFor="bbb">
                       {" "}
                       <img
@@ -359,7 +365,7 @@ export default function Profile() {
                   style={{ display: "flex", justifyContent: "space-arround" }}
                   className="b2"
                 >
-                  <div className="imgs flex justify-center py-4">
+                  <div className="profile flex justify-center py-4">
                     <label htmlFor="afb">
                       {" "}
                       <img
@@ -377,7 +383,7 @@ export default function Profile() {
                     />
                   </div>
 
-                  <div className="imgs flex justify-center py-4">
+                  <div className="profile flex justify-center py-4">
                     <label htmlFor="abb">
                       {" "}
                       <img

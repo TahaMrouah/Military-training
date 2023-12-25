@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import NumberCounter from "number-counter";
 import { Link } from "react-router-dom";
 import { Service, Reasons, Plans, Testimonials, Join } from "..";
+//import Map from "../map/map";
 
 import "../../../App.css";
 import "./Home.css";
@@ -86,7 +87,9 @@ export const Home = () => {
             </div>{" "}
           </div>{" "}
           <div className="hero-buttons">
-            <button className="btn"> Get Started </button>{" "}
+            <button className="btn">
+              <Link to={"/register"}>Get Started</Link>{" "}
+            </button>{" "}
             <button className="btn"> Learn More </button>{" "}
           </div>{" "}
         </div>{" "}

@@ -54,6 +54,93 @@ body {
     border-bottom-right-radius: 50%;
 }
 
+
+/* Add appropriate styling to your table */
+
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+    /* Enable horizontal scrolling on small screens */
+}
+
+.table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Responsive styles for screens up to 800px */
+
+@media (max-width: 800px) {
+
+    /* Add appropriate styling to your table */
+    .table-container {
+        margin-top: 20px;
+        overflow-x: auto;
+        /* Enable horizontal scrolling on small screens */
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table tbody tr:hover {
+        background-color: #e0e0e0;
+    }
+
+    /* Responsive styles for screens up to 800px */
+    @media (max-width: 800px) {
+        .table-container {
+            overflow-x: auto;
+            /* Enable horizontal scrolling on small screens */
+        }
+
+        .table th,
+        .table td {
+            font-size: 14px;
+            /* Adjust font size for better readability on small screens */
+        }
+    }
+}
+
 .blur {
     background: rgba(253, 120, 43, 0.69);
     position: absolute;
@@ -74,9 +161,7 @@ body {
     justify-content: space-around;
 }
 
-.imgs img {
-    width: 250px;
-    height: 270px;
+.images .profile img {
     border-radius: 10px;
 }
 
