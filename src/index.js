@@ -5,7 +5,7 @@ import App from "./App";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 import { BrowserRouter } from "react-router-dom";
 
-//if (process.env.NODE_ENV === "production") disableReactDevTools();
+if (process.env.NODE_ENV === "production") disableReactDevTools();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
