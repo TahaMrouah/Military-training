@@ -19,10 +19,8 @@ import AdminDashboard from "./AdminDashboard";
 export default function Profile() {
   // const navigate = useNavigate();
   const [{ isLoading, apiData, serverError }] = useFetch();
-  const [bfbFile, setBfbFile] = useState();
-  const [bbbFile, setBbbFile] = useState();
-  const [afbFile, setAfbFile] = useState();
-  const [abbFile, setAbbFile] = useState();
+  const [beforeimg, setBeforeImg] = useState();
+  const [afterimg, setAfterImg] = useState();
   const [file, setFile] = useState();
 
   const formik = useFormik({
@@ -36,11 +34,11 @@ export default function Profile() {
       service: apiData?.service || "",
       weight: apiData?.weight || "",
       height: apiData?.height || "",
-      beforefrbody: apiData?.beforefrbody || "",
-      beforebabody: apiData?.beforebabody || "",
-      afterfrbody: apiData?.afterfrbody || "",
-      afterbabody: apiData?.afterbabody || "",
+      beforeimg: apiData?.beforeimg || "",
+      afterimg: apiData?.afterimg || "",
+
       role: apiData?.role || "",
+      plan: apiData?.plan || "",
     },
     enableReinitialize: true,
     validate: profileValidation,
@@ -48,14 +46,17 @@ export default function Profile() {
     validateOnChange: false,
 
     onSubmit: async (values) => {
+      /*console.log("apiData:", apiData);
+      console.log(
+        "formik.getFieldProps('plan'):",
+        formik.getFieldProps("plan")
+      );*/
       // Ensure that file is defined before appending it to values
       values = {
         ...values,
         profile: file || apiData?.profile || "",
-        beforefrbody: bfbFile || apiData?.beforefrbody || "",
-        beforebabody: bbbFile || apiData?.beforebabody || "",
-        afterfrbody: afbFile || apiData?.afterfrbody || "",
-        afterbabody: abbFile || apiData?.afterbabody || "",
+        beforeimg: beforeimg || apiData?.beforeimg || "",
+        afterimg: afterimg || apiData?.afterimg || "",
       };
 
       try {
@@ -64,12 +65,16 @@ export default function Profile() {
 
         await toast.promise(updatePromise, {
           loading: "Updating...",
-          success: <b>Update Successfully...!</b>,
+          success: (
+            <b>
+              Update Successfully...! <br />
+              Reload the page to see the changes
+            </b>
+          ),
           error: <b>Could not Update!</b>,
         });
 
-        const result = updatePromise;
-        console.log(result.data);
+        console.log(values);
         // Assuming result has a 'data' property
 
         // Redirect to the profile page or another page upon successful update
@@ -79,44 +84,24 @@ export default function Profile() {
       }
     },
   });
-  const onUploadBfb = async (e) => {
+  const onUploadBeforeImg = async (e) => {
     try {
       const base64 = await convertToBase64(e.target.files[0]);
-      console.log("Base64 Image (Before Front Body):", base64);
-      setBfbFile(base64);
+      console.log("Base64 Image (Before):", base64);
+      setBeforeImg(base64);
     } catch (error) {
-      console.error("Image upload error (Before Front Body):", error);
+      console.error("Image upload error (Before):", error);
     }
   };
-  const onUploadBbb = async (e) => {
+
+  const onUploadAfterImg = async (e) => {
     try {
       const base64 = await convertToBase64(e.target.files[0]);
-      console.log("Base64 Image (Before Front Body):", base64);
-      setBbbFile(base64);
+      console.log("Base64 Image (After):", base64);
+      setAfterImg(base64);
     } catch (error) {
-      console.error("Image upload error (Before Front Body):", error);
+      console.error("Image upload error (After):", error);
     }
-    // Similar logic for 'Before Back Body' image
-  };
-  const onUploadAfb = async (e) => {
-    try {
-      const base64 = await convertToBase64(e.target.files[0]);
-      console.log("Base64 Image (Before Front Body):", base64);
-      setAfbFile(base64);
-    } catch (error) {
-      console.error("Image upload error (Before Front Body):", error);
-    }
-    // Similar logic for 'After Front Body' image
-  };
-  const onUploadAbb = async (e) => {
-    try {
-      const base64 = await convertToBase64(e.target.files[0]);
-      console.log("Base64 Image (Before Front Body):", base64);
-      setAbbFile(base64);
-    } catch (error) {
-      console.error("Image upload error (Before Front Body):", error);
-    }
-    // Similar logic for 'After Back Body' image
   };
   const onUpload = async (e) => {
     try {
@@ -199,6 +184,7 @@ export default function Profile() {
                   src={apiData?.profile || file || avatar}
                   className={`${styles.profile_img}  ${extend.profile_img}`}
                   alt="Profile Img"
+                  loading="lazy"
                 />
               </label>
               <input
@@ -285,8 +271,34 @@ export default function Profile() {
                   >
                     <option value={null}> ....</option>
                     <option value="Fat-burning">Fat burning</option>
-                    <option value="Muscle-Building">Muscle Building</option>
-                    <option value="Endurance">Endurance</option>
+                    <option value="Strenght-Training">Strenght Training</option>
+                    <option value="Health-Fitness">Health Fitness</option>
+                    <option value="Cardio-training">Cardio Training</option>
+                  </select>
+                </label>
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "10px",
+                    fontSize: "16px",
+                    color: "#333",
+                  }}
+                >
+                  Plans Options:
+                  <select
+                    style={{
+                      width: "100%",
+                      padding: "8px",
+                      marginBottom: "10px",
+                      border: "1px solid #ccc",
+                      borderRadius: "4px",
+                    }}
+                    {...formik.getFieldProps("plan")}
+                  >
+                    <option value={null}> ....</option>
+                    <option value="Basic-Plan">Basic Plan</option>
+                    <option value="Premium-Plan">Premium plan</option>
+                    <option value="Pro-Plan">Pro plan</option>
                   </select>
                 </label>
                 <label
@@ -319,22 +331,25 @@ export default function Profile() {
               </div>
               <div className="images">
                 {" "}
-                <h4 className="text-3xl font-bold text-center">Before </h4>
                 <div
-                  style={{ display: "flex", justifyContent: "space-arround" }}
-                  className="b1"
+                  style={{ display: "flex", justifyContent: "space-between" }}
                 >
+                  <h4 className="text-3xl font-bold ">Before </h4>
+                  <h4 className="text-3xl font-bold ">After </h4>
+                </div>
+                <div className="b1">
                   <div className="profile flex justify-center py-4">
                     <label htmlFor="bfb">
                       {" "}
                       <img
-                        src={apiData?.beforefrbody || bfbFile || avatar}
+                        src={apiData?.beforeimg || beforeimg || avatar}
                         className={`${styles.profile_img}  ${extend.profile_img}`}
-                        alt="Before front body"
+                        alt="Before  body"
+                        loading="lazy"
                       />
                     </label>
                     <input
-                      onChange={onUploadBfb}
+                      onChange={onUploadBeforeImg}
                       type="file"
                       name="bfb"
                       id="bfb"
@@ -346,57 +361,17 @@ export default function Profile() {
                     <label htmlFor="bbb">
                       {" "}
                       <img
-                        src={apiData?.beforebabody || bbbFile || avatar}
+                        src={apiData?.afterimg || afterimg || avatar}
                         className={`${styles.profile_img}  ${extend.profile_img}`}
-                        alt="Before front body"
+                        alt="After  body"
+                        loading="lazy"
                       />
                     </label>
                     <input
-                      onChange={onUploadBbb}
+                      onChange={onUploadAfterImg}
                       type="file"
                       name="bbb"
                       id="bbb"
-                      style={{ display: "none" }}
-                    />
-                  </div>
-                </div>
-                <h4 className="text-3xl font-bold text-center">After </h4>
-                <div
-                  style={{ display: "flex", justifyContent: "space-arround" }}
-                  className="b2"
-                >
-                  <div className="profile flex justify-center py-4">
-                    <label htmlFor="afb">
-                      {" "}
-                      <img
-                        src={apiData?.afterfrbody || afbFile || avatar}
-                        className={`${styles.profile_img}  ${extend.profile_img}`}
-                        alt="Before front body"
-                      />
-                    </label>
-                    <input
-                      onChange={onUploadAfb}
-                      type="file"
-                      name="afb"
-                      id="afb"
-                      style={{ display: "none" }}
-                    />
-                  </div>
-
-                  <div className="profile flex justify-center py-4">
-                    <label htmlFor="abb">
-                      {" "}
-                      <img
-                        src={apiData?.afterbabody || abbFile || avatar}
-                        className={`${styles.profile_img}  ${extend.profile_img}`}
-                        alt="Before front body"
-                      />
-                    </label>
-                    <input
-                      onChange={onUploadAbb}
-                      type="file"
-                      name="abb"
-                      id="abb"
                       style={{ display: "none" }}
                     />
                   </div>

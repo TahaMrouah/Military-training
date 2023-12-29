@@ -5,8 +5,18 @@ import "./navbar.css";
 import { Link } from "react-scroll";
 import { Link as Lien } from "react-router-dom";
 import logo from "../../Assets/logo.png";
+import { IoExitOutline } from "react-icons/io5";
+
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 const Navbar = () => {
+  //logout user function
+  const userlogout = () => {
+    /*localStorage.removeItem("token");
+    localStorage.setItem("loggedIn", false);*/
+    window.localStorage.clear();
+    window.location.href = "./";
+  };
   const mobile = window.innerWidth <= 800 ? true : false;
   const [menuOpened, setMenuOpened] = useState(true);
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -52,14 +62,50 @@ const Navbar = () => {
             }}
           >
             {isLoggedIn ? (
-              <Lien
-                style={{ fontWeight: "bold" }}
-                to="./profile"
-                className="nav-links"
-                onClick={() => setMenuOpened(false)}
-              >
-                <i className="fa-solid fa-user"></i> Profile
-              </Lien>
+              <>
+                <NavDropdown
+                  title={
+                    <i
+                      className="fa-solid fa-user"
+                      style={{ color: "orange", fontSize: "1.5rem" }}
+                    ></i>
+                  }
+                  id="basic-nav-dropdown"
+                  style={{ color: "#fff" }}
+                >
+                  <NavDropdown.Item>
+                    <Lien
+                      style={{ fontWeight: "bold" }}
+                      to="./profile"
+                      className=""
+                      onClick={() => setMenuOpened(false)}
+                    >
+                      Profile
+                    </Lien>
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Item>
+                    {" "}
+                    <Lien to="./profile">My Services</Lien>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
+                    <Lien to="./profile"> My Plans</Lien>
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    onClick={userlogout}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      color: "red",
+                    }}
+                  >
+                    Logout
+                    <IoExitOutline style={{ fontSize: "1.5rem" }} />
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
             ) : (
               <Lien
                 style={{ fontWeight: "bold" }}

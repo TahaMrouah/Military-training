@@ -31,12 +31,15 @@ export default function Username() {
 
       <div
         className="flex justify-center items-center h-screen"
-        style={{ height: "fit-content" }}
+        style={{ height: "fit-content", marginTop: "5rem" }}
       >
         <div className={styles.glass}>
-          <div className="text-center py-4">
+          <div
+            className="text-center flex justify-center"
+            style={{ marginBottom: "1rem" }}
+          >
             <span className="text-gray-500">
-              Go back to home
+              Go back to home &nbsp;
               <Link className="text-red-500" to="/">
                 Home!
               </Link>
@@ -62,15 +65,15 @@ export default function Username() {
                 placeholder="Username"
               />
               <button className={styles.btn} type="submit">
-                Let's Go
+                Continue
               </button>
             </div>
 
             <div className="text-center py-4">
               <span className="text-gray-500">
-                Not a Member{" "}
+                Not a Member ?&nbsp;
                 <Link className="text-red-500" to="/register">
-                  Register Now
+                  Register Now!
                 </Link>
               </span>
             </div>

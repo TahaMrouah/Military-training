@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState /*useEffect*/ } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 //import avatar from "../../Assets/profile.png";
 import toast, { Toaster } from "react-hot-toast";
@@ -15,7 +15,7 @@ export default function Reset() {
   const navigate = useNavigate();
   //const setUsername = useAuthStore((state) => state.setUsername);
 
-  const [{ isLoading, apiData, status, serverError }] =
+  const [{ isLoading, /*apiData,*/ status, serverError }] =
     useFetch("createResetSession");
 
   const formik = useFormik({

@@ -29,4 +29,10 @@ export const NavMenu = [
     home: "./home",
     cName: "nav-links",
   },
+  {
+    title: "Contact Us",
+    url: "footer",
+    home: "./home",
+    cName: "nav-links",
+  },
 ];

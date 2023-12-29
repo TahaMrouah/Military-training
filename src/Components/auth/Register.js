@@ -8,7 +8,9 @@ import { registerValidation } from "../helper/validate";
 import convertToBase64 from "../helper/convert";
 import { registerUser } from "../helper/helper";
 import styles from "../../styles/Username.module.css";
-import Form from "react-bootstrap/Form";
+//import Form from "react-bootstrap/Form";
+import bgImg from "../../Assets/img1.jpg";
+//import { useForm } from "react-hook-form";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ export default function Register() {
       email: "",
       username: "",
       password: "",
+      number: "",
     },
     validate: registerValidation,
     validateOnBlur: false,
@@ -32,7 +35,7 @@ export default function Register() {
           console.log(process.env.SECRET_KEY);
           return;
         }
-
+        setRole("User");
         values = { ...values, profile: file || "", role: role || "User" };
 
         // Assuming registerUser is an asynchronous function that returns a promise
@@ -54,64 +57,41 @@ export default function Register() {
     const base64 = await convertToBase64(e.target.files[0]);
     setFile(base64);
   };
-
+  /* const {
+    formState: { errors },
+  } = useForm();
+*/
   return (
-    <div className="container mx-auto">
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+    <div className="register_container ">
+      <section>
+        <Toaster position="top-center" reverseOrder={false}></Toaster>
+        <div className="register">
+          <div className="div1">
+            <h1 className="text-2xl">Sign In</h1>
+            <span>Register and enjoy the service</span>
 
-      <div className="flex justify-center items-center ">
-        <div
-          className={styles.glass}
-          style={{ width: "70%", paddingTop: "3rem", height: "fit-content" }}
-        >
-          <div className="title flex flex-col items-center">
-            <h4 className="text-5xl font-bold">Registration</h4>
-            <span className="py-4 text-xl w-2/3 text-center text-gray-500">
-              Happy to join you!
-            </span>
-          </div>
-
-          <Form className="py-1" onSubmit={formik.handleSubmit}>
-            <div className="flex justify-center items-center ">
-              <h2 className="text-2xl font-bold">Register As :</h2>
-              &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input
-                required
-                type="radio"
-                name="UpserType"
-                value="User"
-                onChange={(e) => setRole(e.target.value)}
-              />
-              &nbsp;<h2 className=" font-bold">User</h2> &nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input
-                required
-                type="radio"
-                name="UpserType"
-                value="Admin"
-                onChange={(e) => setRole(e.target.value)}
-              />
-              &nbsp; <h2 className=" font-bold">Admin</h2>
-            </div>
-            <div className="profile flex justify-center py-4">
-              <label htmlFor="profile">
-                {" "}
-                <img
-                  src={file || avatar}
-                  className={styles.profile_img}
-                  alt="avatar"
+            <form
+              id="form"
+              className="register_form register_form-col "
+              onSubmit={formik.handleSubmit}
+            >
+              <div className="profile flex justify-center py-4">
+                <label htmlFor="profile">
+                  {" "}
+                  <img
+                    src={file || avatar}
+                    className={styles.profile_img}
+                    alt="avatar"
+                  />
+                </label>
+                <input
+                  onChange={onUpload}
+                  type="file"
+                  name="profile"
+                  id="profile"
+                  className=""
                 />
-              </label>
-              <input
-                onChange={onUpload}
-                type="file"
-                name="profile"
-                id="profile"
-                className=""
-              />
-            </div>
-
-            <div className="textbox flex flex-col items-center gap-6">
+              </div>
               {role === "Admin" ? (
                 <input
                   disabled
@@ -122,51 +102,55 @@ export default function Register() {
                   placeholder="Secret Key"
                 />
               ) : null}
-
               <input
-                style={{ width: "90%" }}
-                {...formik.getFieldProps("username")}
-                className={styles.textbox}
                 type="text"
-                placeholder="Username"
+                {...formik.getFieldProps("username")}
+                placeholder="username"
               />
               <input
-                style={{ width: "90%" }}
-                {...formik.getFieldProps("email")}
-                className={styles.textbox}
+                type={showPassword ? "text" : "password"}
+                {...formik.getFieldProps("password")}
+                placeholder="password"
+              />
+              <input
                 type="email"
+                {...formik.getFieldProps("email")}
                 placeholder="Email"
               />
               <input
-                style={{ width: "90%" }}
-                {...formik.getFieldProps("password")}
-                className={styles.textbox}
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                type="text"
+                inputMode="numeric"
+                {...formik.getFieldProps("mobile", {
+                  required: true,
+                  maxLength: 10,
+                })}
+                placeholder="mobile number"
               />
+
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? "Hide" : "Show"} Password
               </button>
-
-              <button className={styles.btn} type="submit">
+              <button className="btn" type="submit">
                 Register
               </button>
-            </div>
-
-            <div className="text-center py-4">
-              <span className="text-gray-500">
-                Already registered?
-                <Link className="text-red-500" to="/username">
-                  &nbsp;Login Now
-                </Link>
-              </span>
-            </div>
-          </Form>
+              <div className="text-center py-4">
+                <span className="text-gray-500">
+                  Already registered ?
+                  <Link className="text-red-500" to="/username">
+                    &nbsp;Login Now
+                  </Link>
+                </span>
+              </div>
+            </form>
+          </div>
+          <div className="div2">
+            <img src={bgImg} alt="" />
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

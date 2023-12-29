@@ -3,8 +3,10 @@ import "./Plans.css";
 import { plansData } from "../../../data/plansData";
 import whitetick from "../../../Assets/whitetick.png";
 import arrow from "../../../Assets/arrow.png";
+import { Link } from "react-router-dom";
 
 export const Plans = () => {
+  const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <div className="plans-container" id="plans">
       <div className="blur plan-blur1"></div>
@@ -38,7 +40,12 @@ export const Plans = () => {
                   <img src={arrow} alt="" style={{ width: "15px" }} />
                 </span>
               </div>
-              <button className="btn">Join Now</button>
+
+              <button className="btn">
+                <Link to={isLoggedIn ? "./profile" : "./register"}>
+                  Join Now
+                </Link>
+              </button>
             </div>
           );
         })}

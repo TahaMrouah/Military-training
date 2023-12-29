@@ -24,7 +24,7 @@ export default function Password() {
     validateOnChange: false,
     onSubmit: async (values) => {
       try {
-        console.log("apiData:", apiData);
+        //console.log("apiData:", apiData);
 
         let loginPromise = verifyPassword({
           username,
@@ -36,6 +36,7 @@ export default function Password() {
           loading: "Checking...",
           success: <b>Login Successfully...!</b>,
           error: <b>Password Not Match!</b>,
+          duration: 3000,
         });
 
         const res = await loginPromise;
@@ -45,16 +46,16 @@ export default function Password() {
         navigate("/profile");
       } catch (error) {
         console.error("Login error:", error);
+
         // Handle the error as needed, for example, show a toast or display an error message.
       }
     },
   });
-
   if (isLoading)
     return (
       <div
         className="flex justify-center items-center"
-        style={{ display: "grid", margin: "70px auto" }}
+        style={{ display: "grid", margin: "5rem auto" }}
       >
         <h1
           className="flex justify-center items-center"
@@ -90,8 +91,8 @@ export default function Password() {
       >
         <div className={styles.glass}>
           <div className="title flex flex-col items-center">
-            <h4 className="text-5xl font-bold">
-              Hello {apiData?.name || apiData?.username}
+            <h4 className="text-5xl font-bold  ">
+              Hello <br /> {apiData?.name || apiData?.username}
             </h4>
             <span className="py-4 text-xl w-2/3 text-center text-gray-500">
               Explore More by connecting with us.
@@ -104,6 +105,7 @@ export default function Password() {
                 src={apiData?.profile || avatar}
                 className={styles.profile_img}
                 alt="avatar"
+                loading="lazy"
               />
             </div>
 

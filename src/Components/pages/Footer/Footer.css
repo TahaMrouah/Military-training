@@ -21,7 +21,8 @@
     gap: 4rem;
 }
 
-.social-links>img {
+.social-links>img,
+.link>img {
     width: 2rem;
     height: 2rem;
     cursor: pointer;

@@ -10,8 +10,10 @@ if (process.env.NODE_ENV === "production") disableReactDevTools();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
   </>
 );
