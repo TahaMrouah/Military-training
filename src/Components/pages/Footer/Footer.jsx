@@ -4,6 +4,7 @@ import git from "../../../Assets/git.png";
 import insta from "../../../Assets/insta.png";
 import lin from "../../../Assets/in.png";
 import { Link } from "react-scroll";
+import { Link as Lien } from "react-router-dom";
 import logo from "../../../Assets/logo.png";
 
 export const Footer = () => {
@@ -12,18 +13,18 @@ export const Footer = () => {
       <hr />
       <div className="footer">
         <div className="social-links">
-          <Link to="https://github.com/TahaMrouah" className="link">
+          <Lien to="https://github.com/TahaMrouah" className="link">
             {" "}
             <img src={git} alt="" />
-          </Link>
+          </Lien>
 
           <img src={insta} alt="" />
-          <Link
+          <Lien
             className="link"
             to="https://www.linkedin.com/in/mrouah-taha-b16272203/"
           >
             <img src={lin} alt="" />
-          </Link>
+          </Lien>
         </div>
 
         <div className="logo-f">
