@@ -405,6 +405,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <br />
       <Footer></Footer>
     </div>
   );

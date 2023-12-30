@@ -88,20 +88,19 @@ export default function Password() {
   return (
     <div className={`container mx-auto ${styles.container}`}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <div className="blur blur-f1"></div>
-      <div className="blur blur-f2"></div>
+
       <div
         className="flex justify-center items-center h-screen"
         style={{ height: "fit-content", margin: "30px auto" }}
       >
         <div className={styles.glass}>
+          <div
+            className={styles.backArrow}
+            onClick={() => (window.location.href = "./username")}
+          >
+            <FaArrowLeft />
+          </div>
           <div className="title flex flex-col items-center justify-center">
-            <div
-              className={styles.backArrow}
-              onClick={() => (window.location.href = "./username")}
-            >
-              <FaArrowLeft />
-            </div>
             <h4 className="text-5xl font-bold ">
               <span>Hello </span>
               <br />

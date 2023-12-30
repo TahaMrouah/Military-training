@@ -28,62 +28,63 @@ export default function Username() {
   });
 
   return (
-    <div className={`container mx-auto ${styles.container}`}>
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <div className="blur blur-f1"></div>
-      <div className="blur blur-f2"></div>
-      <div
-        className="flex justify-center items-center h-screen"
-        style={{ height: "fit-content", marginTop: "5rem" }}
-      >
-        <div className={styles.glass}>
-          <div
-            className={styles.backArrow}
-            onClick={() => (window.location.href = "./")}
-          >
-            <FaArrowLeft />
-          </div>
-          <div className="title flex flex-col items-center">
-            <h4 className="text-5xl font-bold">Hello Again!</h4>
-            <span className="py-4 text-xl w-2/3 text-center text-gray-500">
-              Explore More by connecting with us.
-            </span>
-          </div>
+    <>
+      <div className={`container mx-auto ${styles.container}`}>
+        <Toaster position="top-center" reverseOrder={false}></Toaster>
 
-          <form className="py-1" onSubmit={formik.handleSubmit}>
-            <div className="profile flex justify-center py-4">
-              <img src={avatar} className={styles.profile_img} alt="avatar" />
+        <div
+          className="flex justify-center items-center h-screen"
+          style={{ height: "fit-content", marginTop: "5rem" }}
+        >
+          <div className={styles.glass}>
+            <div
+              className={styles.backArrow}
+              onClick={() => (window.location.href = "./")}
+            >
+              <FaArrowLeft />
             </div>
-
-            <div className={`${styles.input}`}>
-              <FaUser
-                style={{ margin: "0 30px", color: "grey", fontSize: "2rem" }}
-              />
-              <input
-                {...formik.getFieldProps("username")}
-                className={styles.textbox}
-                type="text"
-                placeholder="Username"
-              />
-            </div>
-            <div className="flex justify-center align-center">
-              <button className={`${styles.btn} `} type="submit">
-                Continue
-              </button>
-            </div>
-            <div className="text-center py-4">
-              <span className="text-gray-500">
-                Not a Member ?&nbsp;
-                <Link className="text-red-500" to="/register">
-                  Register Now!
-                </Link>
+            <div className="title flex flex-col items-center">
+              <h4 className="text-5xl font-bold">Hello Again!</h4>
+              <span className="py-4 text-xl w-2/3 text-center text-gray-500">
+                Explore More by connecting with us.
               </span>
             </div>
-          </form>
+
+            <form className="py-1" onSubmit={formik.handleSubmit}>
+              <div className="profile flex justify-center py-4">
+                <img src={avatar} className={styles.profile_img} alt="avatar" />
+              </div>
+
+              <div className={`${styles.input}`}>
+                <FaUser
+                  style={{ margin: "0 30px", color: "grey", fontSize: "2rem" }}
+                />
+                <input
+                  {...formik.getFieldProps("username")}
+                  className={styles.textbox}
+                  type="text"
+                  placeholder="Username"
+                />
+              </div>
+              <div className="flex justify-center align-center">
+                <button className={`${styles.btn} `} type="submit">
+                  Continue
+                </button>
+              </div>
+              <div className="text-center py-4">
+                <span className="text-gray-500">
+                  Not a Member ?&nbsp;
+                  <Link className="text-red-500" to="/register">
+                    Register Now!
+                  </Link>
+                </span>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <br />
       <Footer></Footer>
-    </div>
+    </>
   );
 }
