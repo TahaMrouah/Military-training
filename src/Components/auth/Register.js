@@ -23,7 +23,7 @@ export default function Register() {
       email: "",
       username: "",
       password: "",
-      number: "",
+      mobile: "",
     },
     validate: registerValidation,
     validateOnBlur: false,
@@ -120,10 +120,7 @@ export default function Register() {
               <input
                 type="text"
                 inputMode="numeric"
-                {...formik.getFieldProps("mobile", {
-                  required: true,
-                  maxLength: 10,
-                })}
+                {...formik.getFieldProps("mobile")}
                 placeholder="mobile number"
               />
 

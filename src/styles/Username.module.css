@@ -1,5 +1,5 @@
 .glass {
-    background: #ececec;
+    background: #dfdfdf;
     border-radius: 16px;
     box-shadow: 0 4px 30px #4747470b;
     backdrop-filter: blur(7.1px);
@@ -17,27 +17,40 @@
     /* You can adjust the color as needed */
 }
 
-.bg {
-    background-image: url("../Assets/Background.png");
-    background-size: cover;
-}
-
 .profile_img {
-    @apply border-4 border-gray-100 w-[135px] rounded-full shadow-lg cursor-pointer;
+    @apply border-4 border-gray-100 w-[145px] rounded-full shadow-lg cursor-pointer;
     @applyhover: border-gray-200;
 }
 
+.input {
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+    width: 90%;
+    height: 80px;
+    background-color: #cacaca;
+    border-radius: 6px
+}
+
 .textbox {
-    @apply border-0 px-5 py-4 rounded-xl w-3/4 shadow-sm text-lg;
-    @applyfocus: outline-none;
+    height: 50px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 19px
 }
 
 .btn {
+    transition: all .5s ease-in-out;
     @apply border bg-indigo-500 w-3/4 py-4 rounded-lg text-gray-50 text-xl shadow-sm text-center;
 }
 
 .btn:hover {
     background-color: #ff6a6a;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
 }
 
 input[type='file'] {

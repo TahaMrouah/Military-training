@@ -5,8 +5,10 @@ import { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import { usernameValidate } from "../helper/validate";
 import { useAuthStore } from "../../store/store";
-
+import { FaUser } from "react-icons/fa";
 import styles from "../../styles/Username.module.css";
+import { FaArrowLeft } from "react-icons/fa";
+import { Footer } from "../pages/Footer/Footer";
 
 export default function Username() {
   const navigate = useNavigate();
@@ -26,24 +28,20 @@ export default function Username() {
   });
 
   return (
-    <div className="container mx-auto">
+    <div className={`container mx-auto ${styles.container}`}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-
+      <div className="blur blur-f1"></div>
+      <div className="blur blur-f2"></div>
       <div
         className="flex justify-center items-center h-screen"
         style={{ height: "fit-content", marginTop: "5rem" }}
       >
         <div className={styles.glass}>
           <div
-            className="text-center flex justify-center"
-            style={{ marginBottom: "1rem" }}
+            className={styles.backArrow}
+            onClick={() => (window.location.href = "./")}
           >
-            <span className="text-gray-500">
-              Go back to home &nbsp;
-              <Link className="text-red-500" to="/">
-                Home!
-              </Link>
-            </span>
+            <FaArrowLeft />
           </div>
           <div className="title flex flex-col items-center">
             <h4 className="text-5xl font-bold">Hello Again!</h4>
@@ -57,18 +55,22 @@ export default function Username() {
               <img src={avatar} className={styles.profile_img} alt="avatar" />
             </div>
 
-            <div className="textbox flex flex-col items-center gap-6">
+            <div className={`${styles.input}`}>
+              <FaUser
+                style={{ margin: "0 30px", color: "grey", fontSize: "2rem" }}
+              />
               <input
                 {...formik.getFieldProps("username")}
                 className={styles.textbox}
                 type="text"
                 placeholder="Username"
               />
-              <button className={styles.btn} type="submit">
+            </div>
+            <div className="flex justify-center align-center">
+              <button className={`${styles.btn} `} type="submit">
                 Continue
               </button>
             </div>
-
             <div className="text-center py-4">
               <span className="text-gray-500">
                 Not a Member ?&nbsp;
@@ -80,6 +82,8 @@ export default function Username() {
           </form>
         </div>
       </div>
+      <br />
+      <Footer></Footer>
     </div>
   );
 }

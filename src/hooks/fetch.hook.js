@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { getUsername } from "../Components/helper/helper";
 //axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL = "https://Military-training-api.onrender.com";
+axios.defaults.baseURL = "https://military-training-api.onrender.com";
 
 /** custom hook */
 export default function useFetch(query) {

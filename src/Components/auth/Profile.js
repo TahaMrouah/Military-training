@@ -15,7 +15,7 @@ import { updateUser } from "../helper/helper";
 import styles from "../../styles/Username.module.css";
 import extend from "../../styles/Profile.module.css";
 import AdminDashboard from "./AdminDashboard";
-
+import { Footer } from "../pages/Footer/Footer";
 export default function Profile() {
   // const navigate = useNavigate();
   const [{ isLoading, apiData, serverError }] = useFetch();
@@ -155,9 +155,10 @@ export default function Profile() {
     return <AdminDashboard />;
   }
   return (
-    <div className={`container mx-auto  `}>
+    <div className={`container mx-auto ${styles.container} py-20`}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-
+      <div className="blur blur-f2"></div>
+      <div className="blur blur-f1"></div>
       <div className={`flex justify-center items-center `}>
         <div
           className={`${styles.glass} ${extend.glass}`}
@@ -200,13 +201,13 @@ export default function Profile() {
               <div className="name flex w-3/4 gap-10">
                 <input
                   {...formik.getFieldProps("name")}
-                  className={`${styles.textbox} ${extend.textbox}`}
+                  className={` ${extend.textbox}`}
                   type="text"
                   placeholder="First Name"
                 />
                 <input
                   {...formik.getFieldProps("lname")}
-                  className={`${styles.textbox} ${extend.textbox}`}
+                  className={`${extend.textbox}`}
                   type="text"
                   placeholder="Last Name"
                 />
@@ -214,14 +215,14 @@ export default function Profile() {
               <div className="name flex w-3/4 gap-10">
                 <input
                   {...formik.getFieldProps("mobile")}
-                  className={`${styles.textbox} ${extend.textbox}`}
+                  className={` ${extend.textbox}`}
                   type="text"
                   placeholder="Mobile No."
                   inputMode="numeric"
                 />
                 <input
                   {...formik.getFieldProps("email")}
-                  className={`${styles.textbox} ${extend.textbox}`}
+                  className={` ${extend.textbox}`}
                   type="email"
                   placeholder="Email"
                   disabled
@@ -230,14 +231,16 @@ export default function Profile() {
               <div className="name flex w-3/4 gap-10">
                 <input
                   {...formik.getFieldProps("weight")}
-                  className={`${styles.textbox} ${extend.textbox}`}
-                  type="number"
+                  className={`${extend.textbox}`}
+                  type="text"
+                  inputMode="numeric"
                   placeholder="Weight Kg"
                 />
                 <input
                   {...formik.getFieldProps("height")}
-                  className={`${styles.textbox} ${extend.textbox}`}
-                  type="number"
+                  className={` ${extend.textbox}`}
+                  type="text"
+                  inputMode="numeric"
                   placeholder="Height Cm"
                 />
               </div>
@@ -245,7 +248,7 @@ export default function Profile() {
               <input
                 style={{ width: "70%" }}
                 {...formik.getFieldProps("address")}
-                className={`${styles.textbox} ${extend.textbox}`}
+                className={` ${extend.textbox}`}
                 type="text"
                 placeholder="Address"
               />
@@ -402,6 +405,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

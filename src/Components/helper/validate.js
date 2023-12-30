@@ -50,7 +50,20 @@ function passwordVerify(errors = {}, values) {
 
   return errors;
 }
+/** mobile verififcation  */
+function mobileNumberVerify(errors = {}, values) {
+  const numericCharsOnly = /^\d+$/;
 
+  if (!values.mobile) {
+    errors.mobile = toast.error("Mobile Number Required...!");
+  } else if (!numericCharsOnly.test(values.mobile)) {
+    errors.mobile = toast.error("Mobile Number must contain only digits");
+  } else if (values.mobile.length !== 10) {
+    errors.mobile = toast.error("Mobile Number must be 10 digits long");
+  }
+
+  return errors;
+}
 /**Validate reset password */
 export async function resetPasswordValidation(values) {
   const errors = passwordVerify({}, values);
@@ -66,6 +79,7 @@ export async function registerValidation(values) {
   const errors = usernameVerify({}, values);
   passwordVerify(errors, values);
   emailVerify(errors, values);
+  mobileNumberVerify(errors, values);
 
   return errors;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import avatar from "../../Assets/profile.png";
+import avatar from "../../Assets/avatarr.png";
 import toast, { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 import RingLoader from "react-spinners/RingLoader";
@@ -9,7 +9,11 @@ import useFetch from "../../hooks/fetch.hook";
 import { useAuthStore } from "../../store/store";
 import { verifyPassword } from "../helper/helper";
 import styles from "../../styles/Username.module.css";
-
+import { MdOutlinePassword } from "react-icons/md";
+import { BiSolidShow } from "react-icons/bi";
+import { BiSolidHide } from "react-icons/bi";
+import { FaArrowLeft } from "react-icons/fa";
+import { Footer } from "../pages/Footer/Footer";
 export default function Password() {
   const navigate = useNavigate();
   const { username } = useAuthStore((state) => state.auth);
@@ -82,17 +86,36 @@ export default function Password() {
     return <h1 className="text-xl text-red-500">{serverError.message}</h1>;
 
   return (
-    <div className="container mx-auto">
+    <div className={`container mx-auto ${styles.container}`}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-
+      <div className="blur blur-f1"></div>
+      <div className="blur blur-f2"></div>
       <div
         className="flex justify-center items-center h-screen"
         style={{ height: "fit-content", margin: "30px auto" }}
       >
         <div className={styles.glass}>
-          <div className="title flex flex-col items-center">
-            <h4 className="text-5xl font-bold  ">
-              Hello <br /> {apiData?.name || apiData?.username}
+          <div className="title flex flex-col items-center justify-center">
+            <div
+              className={styles.backArrow}
+              onClick={() => (window.location.href = "./username")}
+            >
+              <FaArrowLeft />
+            </div>
+            <h4 className="text-5xl font-bold ">
+              <span>Hello </span>
+              <br />
+              <span>{apiData?.name || apiData?.username}</span>
+              <hr
+                style={{
+                  background: "#ff6a6a",
+                  width: "220px",
+                  height: "6px",
+                  border: "none",
+                  margin: "5px auto",
+                  borderRadius: "3px",
+                }}
+              />
             </h4>
             <span className="py-4 text-xl w-2/3 text-center text-gray-500">
               Explore More by connecting with us.
@@ -105,11 +128,13 @@ export default function Password() {
                 src={apiData?.profile || avatar}
                 className={styles.profile_img}
                 alt="avatar"
-                loading="lazy"
               />
             </div>
 
-            <div className="textbox flex flex-col items-center gap-6">
+            <div className={`${styles.input}`}>
+              <MdOutlinePassword
+                style={{ margin: "0 30px", color: "grey", fontSize: "3rem" }}
+              />
               <input
                 {...formik.getFieldProps("password")}
                 className={styles.textbox}
@@ -120,13 +145,30 @@ export default function Password() {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? "Hide" : "Show"} Password
+                {showPassword ? (
+                  <BiSolidHide
+                    style={{
+                      margin: "0 30px",
+                      color: "grey",
+                      fontSize: "2.2rem",
+                    }}
+                  />
+                ) : (
+                  <BiSolidShow
+                    style={{
+                      margin: "0 30px",
+                      color: "grey",
+                      fontSize: "2.2rem",
+                    }}
+                  />
+                )}
               </button>
+            </div>
+            <div className="flex justify-center align-center">
               <button className={styles.btn} type="submit">
                 Sign In
               </button>
             </div>
-
             <div className="text-center py-4">
               <span className="text-gray-500">
                 Forgot Password?{" "}
@@ -138,6 +180,7 @@ export default function Password() {
           </form>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }
