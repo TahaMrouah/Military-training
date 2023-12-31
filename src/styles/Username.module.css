@@ -1,10 +1,26 @@
 .glass {
     background: #dfdfdf;
     border-radius: 16px;
-    box-shadow: 0 4px 30px #4747470b;
     backdrop-filter: blur(7.1px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    @apply border-4 border-gray-50 shrink-0 h-3/4 w-[30%] rounded-3xl py-20 px-7 min-w-max;
+    border-width: 4px;
+    border-color: #d2d6dc;
+    /* Use the appropriate color for border-gray-50 */
+    border-style: solid;
+    flex-shrink: 0;
+    height: 75%;
+    width: 30%;
+    border-radius: 1.5rem;
+    /* Use the appropriate value for rounded-3xl */
+    padding-top: 5rem;
+    /* Use the appropriate value for py-20 */
+    padding-right: 1.75rem;
+    /* Use the appropriate value for px-7 */
+    padding-bottom: 5rem;
+    /* Use the appropriate value for py-20 */
+    padding-left: 1.75rem;
+    /* Use the appropriate value for px-7 */
+    min-width: max-content;
 }
 
 .backArrow {
@@ -34,7 +50,7 @@
 
 .textbox {
     height: 50px;
-    width: 100%;
+    width: 90%;
     background: transparent;
     border: none;
     outline: none;
@@ -60,5 +76,21 @@ input[type='file'] {
 @media screen and (max-width: 800px) {
     .container {
         width: 100%;
+    }
+
+    .glass {
+        width: 80%;
+    }
+
+    .input {
+        width: 75%;
+    }
+
+    .textbox {
+        width: 85%;
+    }
+
+    .btn {
+        width: 50%
     }
 }

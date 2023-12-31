@@ -12,7 +12,7 @@ import styles from "../../styles/Username.module.css";
 import { MdOutlinePassword } from "react-icons/md";
 import { BiSolidShow } from "react-icons/bi";
 import { BiSolidHide } from "react-icons/bi";
-import { FaArrowLeft } from "react-icons/fa";
+//import { FaArrowLeft } from "react-icons/fa";
 import { Footer } from "../pages/Footer/Footer";
 export default function Password() {
   const navigate = useNavigate();
@@ -94,14 +94,8 @@ export default function Password() {
         style={{ height: "fit-content", margin: "30px auto" }}
       >
         <div className={styles.glass}>
-          <div
-            className={styles.backArrow}
-            onClick={() => (window.location.href = "./username")}
-          >
-            <FaArrowLeft />
-          </div>
           <div className="title flex flex-col items-center justify-center">
-            <h4 className="text-5xl font-bold ">
+            <h4 className="text-5xl font-bold text-center">
               <span>Hello </span>
               <br />
               <span>{apiData?.name || apiData?.username}</span>

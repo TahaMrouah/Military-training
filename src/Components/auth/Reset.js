@@ -92,7 +92,11 @@ export default function Reset() {
               >
                 {showPassword ? "Hide" : "Show"} Password
               </button>
-              <button className={styles.btn} type="submit">
+              <button
+                className={styles.btn}
+                style={{ width: "100%" }}
+                type="submit"
+              >
                 Reset
               </button>
             </div>

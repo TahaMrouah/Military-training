@@ -151,8 +151,7 @@ const AdminDashboard = () => {
             }}
           />
         </div>
-        <div className="blur blur-f1"></div>
-        <div className="blur blur-f2"></div>
+
         <section className="users">
           {isLoadingData
             ? // Render the CardSkeleton component when isLoading is true
